@@ -1,40 +1,61 @@
 #include <stdio.h>
 
-int main() {
-    int carta;
-    char Estado[15]; 
+typedef struct {
+    char estado[30];
+    int codigo;
+    char cidade[30];
     int populacao;
     float area;
     float pib;
-    int pontosturisticos;
+    int pontosTuristicos;
+} Carta;
 
-printf("Selecione a sua carta:\n");
-scanf("%d", &carta);
+void lerCarta(Carta *c) {
+    printf("Digite o código da carta: ");
+    scanf("%d", &c->codigo);
 
-printf("Digite o estado que sua carta representa:\n");
-scanf("%s", &estado);
+    printf("Digite o nome do estado: ");
+    scanf(" %[^\n]", c->estado);
 
-printf("Digite a População:\n");
-scanf ("%d", &populacao);
+    printf("Digite o nome da cidade: ");
+    scanf(" %[^\n]", c->cidade);
 
-printf ("Digite a Área:\n");
-scanf ("%f", &area);
+    printf("Digite a população: ");
+    scanf("%d", &c->populacao);
 
-printf ("Digite o PIB:\n");
-scanf ("%d", &pib);
+    printf("Digite a área (em km²): ");
+    scanf("%f", &c->area);
 
-printf ("Digite a quantidade de Pontos Turisticos:\n");
-scanf ("%f", &pontosturisticos);
+    printf("Digite o PIB (em bilhões): ");
+    scanf("%f", &c->pib);
 
-printf("População: %d\n", populacao);
-    
-printf("Área: %d\n", area);
+    printf("Digite o número de pontos turísticos: ");
+    scanf("%d", &c->pontosTuristicos);
+}
 
-printf("PIB: %d\n", pib);
+void mostrarCarta(Carta c) {
+    printf("\n----- CARTA SUPER TRUNFO -----\n");
+    printf("Código: %d\n", c.codigo);
+    printf("Estado: %s\n", c.estado);
+    printf("Cidade: %s\n", c.cidade);
+    printf("População: %d\n", c.populacao);
+    printf("Área: %.2f km²\n", c.area);
+    printf("PIB: R$ %.2f bilhões\n", c.pib);
+    printf("Pontos Turísticos: %d\n", c.pontosTuristicos);
+}
 
-printf("Pontos Turísticos:%d/n", pontosturisticos);
-    
+int main() {
+    Carta carta1, carta2;
 
+    printf("==== Digite os dados da Carta 1 ====\n");
+    lerCarta(&carta1);
+
+    printf("\n==== Digite os dados da Carta 2 ====\n");
+    lerCarta(&carta2);
+
+    printf("\n==== Exibindo Cartas ====\n");
+    mostrarCarta(carta1);
+    mostrarCarta(carta2);
 
     return 0;
 }
